@@ -178,3 +178,6 @@ if AUTH_LDAP:
         'django_auth_ldap.backend.LDAPBackend',
         'django.contrib.auth.backends.ModelBackend',
     )
+
+
+meilisearch_url = '...'

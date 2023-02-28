@@ -4,9 +4,13 @@ from django.db import models
 import django_filters
 from django_filters.rest_framework import FilterSet
 from django.core.exceptions import ValidationError
+import meilisearch
+import json
 
 from .fields import CPUField, MemoryField
 
+
+client = meilisearch.Client('http://meilisearch:7700')
 
 # front-end API types
 TYPE_CHOICES = [("string", "String values"), ("float", "Float values"),
@@ -196,6 +200,24 @@ class Plugin(models.Model):
 
     def __str__(self):
         return self.meta.name
+
+    def save(self, *args, **kwargs):
+        """
+        Overridden to save plugin data to meilisearch after saving to database.
+        """
+        super(Plugin, self).save(*args, **kwargs)
+
+        data = {
+            'id': int(self.id),
+            'dock_image': str(self.dock_image),
+            'description': str(self.description),
+            'selfexec': str(self.selfexec)
+        }
+
+        client.index('chris_plugins').add_documents([data])
+
+        print(f'i saved a plugin! my parmaters were args={args} kwargs={kwargs}, my name is {self.dock_image} ')
+
 
     def get_plugin_parameter_names(self):
         """

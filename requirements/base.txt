@@ -12,3 +12,5 @@ django-celery-beat==2.3.0
 python-chrisstoreclient==1.0.0
 python-pfconclient==3.0.0
 django-auth-ldap==4.1.0
+meilisearch==0.25.0
+

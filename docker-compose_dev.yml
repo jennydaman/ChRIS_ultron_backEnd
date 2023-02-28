@@ -240,6 +240,17 @@ services:
       name: "Swift"
       role: "Swift object storage service"
 
+  meilisearch:
+    image: getmeili/meilisearch:v1.0.1
+    ports:
+      - "7700:7700"
+    environment:
+      MEILI_ENV: development
+    volumes:
+      - meili_data:/meili_data
+    networks:
+      - local
+
 
 networks:
   local:
@@ -253,3 +264,4 @@ volumes:
   chris_store_db_data:
   queue_data:
   swift_storage_dev:
+  meili_data:
