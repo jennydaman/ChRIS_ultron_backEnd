@@ -88,7 +88,7 @@ if STORAGE_ENV not in ('swift', 'filesystem'):
     raise ImproperlyConfigured(f"Unsupported value '{STORAGE_ENV}' for STORAGE_ENV")
 
 DEFAULT_FILE_STORAGE = 'swift.storage.SwiftStorage'
-SWIFT_AUTH_URL = 'http://swift_service:8080/auth/v1.0'  # Swift service settings
+SWIFT_AUTH_URL = 'http://swift:8080/auth/v1.0'  # Swift service settings
 SWIFT_USERNAME = 'chris:chris1234'
 SWIFT_KEY = 'testing'
 SWIFT_CONTAINER_NAME = 'users'
@@ -119,7 +119,7 @@ DATABASES['default']['NAME'] = 'chris_dev'
 DATABASES['default']['USER'] = 'chris'
 DATABASES['default']['PASSWORD'] = 'Chris1234'
 DATABASES['default']['TEST'] = {'NAME': 'test_chris_dev'}
-DATABASES['default']['HOST'] = 'chris_dev_db'
+DATABASES['default']['HOST'] = 'db'
 DATABASES['default']['PORT'] = '5432'
 
 # Mail settings

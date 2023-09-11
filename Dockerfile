@@ -36,7 +36,9 @@ COPY --chown=default:root ./requirements/ /tmp/requirements
 ARG ENVIRONMENT=production
 RUN pip install -r /tmp/requirements/$ENVIRONMENT.txt && rm -rf /tmp/requirements
 COPY chris_backend/ ./
-RUN env DJANGO_SETTINGS_MODULE=config.settings.common ./manage.py collectstatic
+
+# HOME is set to temporary location as a workaround for pudb which tries to write ~/.config
+RUN --mount=type=tmpfs,target=/tmp/home env HOME=/tmp/home DJANGO_SETTINGS_MODULE=config.settings.common ./manage.py collectstatic
 
 CMD ["gunicorn", "-b", "0.0.0.0:8000", "-w", "4", "config.wsgi:application"]
 
@@ -46,5 +48,4 @@ LABEL org.opencontainers.image.authors="FNNDSC <dev@babyMRI.org>" \
     org.opencontainers.image.url="https://chrisproject.org/" \
     org.opencontainers.image.source="https://github.com/FNNDSC/ChRIS_ultron_backEnd" \
     org.opencontainers.image.documentation="https://github.com/FNNDSC/ChRIS_ultron_backEnd/wiki/" \
-    org.opencontainers.image.version="" \
     org.opencontainers.image.licenses="MIT"
