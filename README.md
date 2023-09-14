@@ -1,7 +1,13 @@
 # ![ChRIS logo](https://github.com/FNNDSC/ChRIS_ultron_backEnd/blob/master/docs/assets/logo_chris.png) ChRIS\_ultron\_backEnd
 
-[![Build](https://github.com/FNNDSC/ChRIS_ultron_backEnd/actions/workflows/ci.yml/badge.svg)](https://github.com/FNNDSC/ChRIS_ultron_backEnd/actions/workflows/ci.yml)![License][license-badge]
-![Last Commit][last-commit-badge]
+[![Build](https://github.com/FNNDSC/ChRIS_ultron_backEnd/actions/workflows/ci.yml/badge.svg)](https://github.com/FNNDSC/ChRIS_ultron_backEnd/actions/workflows/ci.yml)
+[![License](https://img.shields.io/github/license/fnndsc/ChRIS_ultron_backEnd.svg)](./LICENSE)
+
+_ChRIS_ is an open-source platform for containerized medical compute.
+The _ChRIS_ backend, a.k.a. _ChRIS Ultron Backend_ or _**CUBE**_ for short,
+is a component of the _ChRIS_ system.
+
+![Architecture Diagram](https://raw.githubusercontent.com/FNNDSC/CHRIS_docs/5212b2bab9f575986a800bdc677399664009dc14/images/ChRIS%20architecture.svg)
 
 The _ChRIS Research Integration System_, or [_ChRIS_](https://chrisproject.org/) for short, is an open-source platform for containerized medical compute.
 This repository houses the _ChRIS Ultron Back End_ (a.k.a. _ChRIS_ underlying back-end, or _**CUBE**_ for short) project, which is the core backend server of _ChRIS_. _CUBE_ is a Django project offering a [collection+json](http://amundsen.com/media-types/collection/) REST API.
@@ -99,84 +105,7 @@ The resulting CUBE instance uses the default Django development server and there
 
 ### Production deployments
 
-For convenience a `deploy.sh` bash script is provided as part of the Github repo's source code. 
-Internally the script uses the `docker stack` or `Kustomize` tools to deploy on a Swarm or Kubernetes cluster respectively.
-
-#### Fetch the repo's source code:
-
-```bash
-git clone https://github.com/FNNDSC/ChRIS_ultron_backend
-cd ChRIS_ultron_backend
-```
-
-#### Deploy on a single-machine Docker Swarm cluster:
-
-* Create appropriate ``secrets`` subdirectory:
-
-```bash
-mkdir swarm/prod/secrets
-```
-
-* Copy all the required secret configuration files into the ``secrets`` directory, please take a look at 
-[this](https://github.com/FNNDSC/ChRIS_ultron_backEnd/wiki/ChRIS-backend-production-services-secret-configuration-files) 
-wiki page to learn more about these files. 
-
-* Deploy CUBE backend containers:
-
-```bash
-./deploy.sh up
-```
-
-* Tear down and remove CUBE backend containers:
-
-```bash
-cd ChRIS_ultron_backend
-./deploy.sh down
-```
-
-#### Deploy on a Kubernetes cluster:
-
-* Create appropriate ``secrets`` subdirectory:
-
-```bash
-mkdir kubernetes/prod/secrets
-```
-
-* Copy all the required secret configuration files into the ``secrets`` directory, please take a look at 
-[this](https://github.com/FNNDSC/ChRIS_ultron_backEnd/wiki/ChRIS-backend-production-services-secret-configuration-files) 
-wiki page to learn more about these files.
-
-##### Single-machine deployment:
-
-* Deploy CUBE backend containers:
-
-```bash
-./deploy.sh -O kubernetes up
-```
-
-* Tear down and remove CUBE backend containers:
-
-```bash
-cd ChRIS_ultron_backend
-./deploy.sh -O kubernetes down
-```
-
-##### Multi-machine deployment (with NFS-based persistent storage):
-
-* Deploy CUBE backend containers:
-
-```bash
-./deploy.sh -O kubernetes -T nfs -P <nfs_server_ip> -S <storeBase> -D <storageBase> up
-```
-
-* Both ``storeBase`` and ``storageBase`` are explained in the header documentation of the ``deploy.sh`` script.
-
-* Tear down and remove CUBE backend containers:
-
-```bash
-cd ChRIS_ultron_backend
-./deploy.sh -O kubernetes -T nfs -P <nfs_server_ip> down
-```
+Please refer to https://github.com/FNNDSC/khris-helm
 
 
 ### Development
@@ -334,9 +263,6 @@ Available [here](https://github.com/FNNDSC/ChRIS_ultron_backEnd/wiki/ChRIS-backe
 #### Wiki.
 
 Available [here](https://github.com/FNNDSC/ChRIS_ultron_backEnd/wiki).
-
-[license-badge]: https://img.shields.io/github/license/fnndsc/ChRIS_ultron_backEnd.svg
-[last-commit-badge]: https://img.shields.io/github/last-commit/fnndsc/ChRIS_ultron_backEnd.svg
 
 ### Learn More
 

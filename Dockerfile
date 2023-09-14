@@ -38,7 +38,10 @@ RUN pip install -r /tmp/requirements/$ENVIRONMENT.txt && rm -rf /tmp/requirement
 COPY chris_backend/ ./
 
 # HOME is set to temporary location as a workaround for pudb which tries to write ~/.config
-RUN --mount=type=tmpfs,target=/tmp/home env HOME=/tmp/home DJANGO_SETTINGS_MODULE=config.settings.common ./manage.py collectstatic
+RUN --mount=type=tmpfs,target=/tmp/home \
+    if [ "$ENVIRONMENT" = "production" ]; then \
+        env HOME=/tmp/home DJANGO_SETTINGS_MODULE=config.settings.common ./manage.py collectstatic \;
+    fi
 
 CMD ["gunicorn", "-b", "0.0.0.0:8000", "-w", "4", "config.wsgi:application"]
 
