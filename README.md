@@ -1,18 +1,18 @@
-# ![ChRIS logo](https://github.com/FNNDSC/ChRIS_ultron_backEnd/blob/master/docs/assets/logo_chris.png) ChRIS_ultron_backEnd
+# ![ChRIS logo](https://github.com/FNNDSC/ChRIS_ultron_backEnd/blob/master/docs/assets/logo_chris.png) ChRIS\_ultron\_backEnd
 
 [![Build](https://github.com/FNNDSC/ChRIS_ultron_backEnd/actions/workflows/ci.yml/badge.svg)](https://github.com/FNNDSC/ChRIS_ultron_backEnd/actions/workflows/ci.yml)![License][license-badge]
 ![Last Commit][last-commit-badge]
 
-The core backend service for the ChRIS distributed software platform, also known by the anacronym _CUBE_. Internally the service is implemented as a Django-PostgreSQL project offering a [collection+json](http://amundsen.com/media-types/collection/) REST API. Important ancillary components include the ``pfcon`` and ``pman`` file transfer and remote process management microservices.
-
+The _ChRIS Research Integration System_, or [_ChRIS_](https://chrisproject.org/) for short, is an open-source platform for containerized medical compute.
+This repository houses the _ChRIS Ultron Back End_ (a.k.a. _ChRIS_ underlying back-end, or _**CUBE**_ for short) project, which is the core backend server of _ChRIS_. _CUBE_ is a Django project offering a [collection+json](http://amundsen.com/media-types/collection/) REST API.
 
 ## ChRIS development, testing and deployment
 
 ### Abstract
 
-_ChRIS Ultron Back End_ (sometimes also _ChRIS Underlying Back End_) or simply _CUBE_ is the main core of the ChRIS system. _CUBE_ provides the main REST API to the ChRIS system, as well as maintaining an internal database of users, files, pipelines, and plugins. Currently _CUBE_ has two separate compute paradigms depending on deployment context. In the case of _development_ all components of _CUBE_ use `docker` and `docker swarm` technologies. In the case of _production_ technologies such as `openshift` and `kubernetes` are also supported.
+_ChRIS Ultron Back End_ (a.k.a. _ChRIS Underlying Back End_) or simply _CUBE_ is the main core of the _ChRIS_ system. _CUBE_ provides the main REST API to the _ChRIS_ system and maintains its database of users, files, plugins, and pipelines.
 
-Consult this page for instructions on starting _CUBE_ in either _development_ or _production_ contexts. For documentation/overview/background, please see the [documention](https://github.com/FNNDSC/ChRIS_docs).
+Consult this page for instructions on starting _CUBE_ in either _development_ or _product. For documentation/overview/background, please see the [documention](https://github.com/FNNDSC/ChRIS_docs).
 
 
 ### Preconditions
