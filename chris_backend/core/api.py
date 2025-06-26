@@ -14,6 +14,7 @@ from pacsfiles import views as pacsfile_views
 from pacsfiles import consumers as pacsfile_consumers
 from filebrowser import views as filebrowser_views
 from users import views as user_views
+from hasuraauth import views as hasura_views
 
 
 # API v1 endpoints
@@ -23,6 +24,8 @@ urlpatterns = format_suffix_patterns([
         obtain_auth_token,
     ),
 
+    path('v1/hasuraauth/',
+        hasura_views.hasura_token, name='hasura-auth'),
 
     path(
         'v1/users/',
